@@ -3,17 +3,7 @@
 
 from varmake import *
 
-
-def addressify(loc):
-    try:
-        loc = str(loc)
-        l = [int(loc[:-2])-1,int(loc[-1])-1]
-        apartments[l[0]][l[1]]
-    except:
-        l = ("ERR")
-    return(l)
     
-
 def showapts():
     blist = [room for roomlist in reversed(apartments) for room in roomlist]
     for i in range(len(blist)):
@@ -33,24 +23,39 @@ def showapts():
         |===============================================|
     """.format(*blist))
 
+def listify(num):
+    return([int(num[:-2])-1,int(num[-1])-1])
+
+def checkspace(address):
+    try:
+        if apartments[address[0]][address[1]] == None:
+            return(1)
+        else:
+            return(2)
+    except:
+        return(3)
 
 def createfriend():
-    name = input("What are you naming this friend?\n")
-    areq = input("What room did you want to put them in?\n")
-    afind = addressify(areq)
+    name = input("What do you want your friend's name to be?\n")
     try:
-        add = apartments[afind[0]][afind[1]]
+        address = listify(input("Where do you want your friend to live?\n"))
     except:
-        return("Error: Room does not exist.")
-    if add == "ERR":
-        return("Error: Room does not exist.")
-    if add != None:
-        c = input(f"Room already in use by [{add.name}]. Would you like to replace them? y/n.\n").lower()
-        if c == "y":
-            print(f"Sure. Replaced [{add.name}].") 
-        elif c == "n":
-            return("Error: Room already in use.")
-        else:
-            return("Error: Choice was not valid.")
-    apartments[afind[0]][afind[1]] = Friend(name, areq)
-    return(f"Friend [{name}] added successfully to room {areq}.")
+        return("Error: Address is invalid.")
+    if checkspace(address) == 1:
+        apartments[address[0]][address[1]] = Friend(name,address)
+    elif checkspace(address) == 2:
+        movefriend(Friend(name,address),apartments[address[0]][address[1]])
+
+def movefriend(usurper,victim):
+    try:
+        address = listify(input(f"Where do you want {victim.name} to move to?\n"))
+    except:
+        print("Error: Address is invalid.")
+        return()
+    apartments[victim.getaddress()[0]][victim.getaddress()[1]] = usurper
+    print(usurper.name,victim.name)
+    if checkspace(address) == 1:
+        pass
+    elif checkspace(address) == 2:
+        pass
+        

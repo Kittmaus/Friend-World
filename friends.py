@@ -1,6 +1,5 @@
-from messystuff import createfriend,showapts
-
+from messystuff import createfriend, showapts, apartments
 
 while True:
-    print(createfriend())
+    createfriend()
     showapts()
