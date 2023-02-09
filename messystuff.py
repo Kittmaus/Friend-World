@@ -41,21 +41,22 @@ def createfriend():
         address = listify(input("Where do you want your friend to live?\n"))
     except:
         return("Error: Address is invalid.")
-    if checkspace(address) == 1:
-        apartments[address[0]][address[1]] = Friend(name,address)
-    elif checkspace(address) == 2:
-        movefriend(Friend(name,address),apartments[address[0]][address[1]])
+    movefriend(Friend(name, address), address)
 
-def movefriend(usurper,victim):
-    try:
-        address = listify(input(f"Where do you want {victim.name} to move to?\n"))
-    except:
-        print("Error: Address is invalid.")
-        return()
-    apartments[victim.getaddress()[0]][victim.getaddress()[1]] = usurper
-    print(usurper.name,victim.name)
-    if checkspace(address) == 1:
-        pass
-    elif checkspace(address) == 2:
-        pass
-        
+def movefriend(newFriend, home):
+    if checkspace(home) == 1: #(empty)
+        apartments[home[0]][home[1]] = newFriend
+        newFriend.address = f"{int(home[0])+1}0{int(home[1])+1}"
+
+    elif checkspace(home) == 2: #(has resident)
+        oldFriend = apartments[home[0]][home[1]]
+        try:
+            address = listify(input(f"Where do you want to move [{oldFriend.name}]?\n"))
+        except:
+            return("Error: Address is invalid.")
+        apartments[home[0]][home[1]] = newFriend
+        newFriend.address = f"{int(home[0])+1}0{int(home[1])+1}"
+        movefriend(oldFriend, address)
+
+def gethome(address):
+    return(apartments[address[0]][address[1]])
