@@ -3,6 +3,16 @@ class Friend:
         self.name = n
         self.address = a
 
-dummy = Friend("Craigo", 101)
+apartments = [
+    [None,None,None,None,None,None,None,None],
+    [None,None,None,None,None,None,None,None],
+    [None,None,None,None,None,None,None,None],
+    [None,None,None,None,None,None,None,None]
+]
 
-print(dummy.name)
+def sela(loc):
+    loc = str(loc)
+    try:
+        return(apartments[int(loc[:-2])-1][int(loc[-1])-1])
+    except:
+        return("this room does not exist IDIOT")
