@@ -1,5 +1,5 @@
 # Friend World
-A cheaply made python ripoff of tomodachi games, because people want a 3rd game
+A cheaply made python ripoff of the tomodachi games because people want a 3rd game
 ***
 ### Current Notable Features:
 + "Friend" creation, moving, and deletion
