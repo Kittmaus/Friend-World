@@ -3,15 +3,25 @@
 
 from varmake import *
 
-    
+
+def makelist(lis):
+    return([a for b in lis for a in b])
+
 def showapts():
-    blist = [room for roomlist in reversed(apartments) for room in roomlist]
+    blist = makelist(reversed(apartments))
     for i in range(len(blist)):
         if blist[i] == None:
             blist[i] = " "
         if type(blist[i]) == Friend:
             blist[i] = blist[i].symbol
     print("""
+FriendWorld V0.01              
+Made by Kittmaus
+                                             ( )
+                                             ()
+                                             O
+                                          __o_
+               /---\\                      |  |
         |===============================================|
         |  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |
         |===============================================|

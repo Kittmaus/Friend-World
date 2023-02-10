@@ -1,3 +1,5 @@
+filled = False
+
 class Friend:
     def __init__(self, n, a):
         self.name = n
@@ -11,7 +13,7 @@ class Friend:
         return(f"Name: {self.name}\nAddress (Number Form): {self.address}\nAddress (List Form): {self.getaddress()}\n")
 
 apartments = [
-    [Friend("Debug",[0,0]),None,None,None,None,None,None,None],
+    [None,None,None,None,None,None,None,None],
     [None,None,None,None,None,None,None,None],
     [None,None,None,None,None,None,None,None],
     [None,None,None,None,None,None,None,None]
