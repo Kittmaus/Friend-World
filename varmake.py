@@ -1,3 +1,6 @@
+import os
+clear = lambda: os.system('cls')
+
 filled = False
 
 class Friend:
